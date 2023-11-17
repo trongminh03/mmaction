@@ -1057,7 +1057,8 @@ class UniformSampleFrames(BaseTransform):
             else:
                 bids = np.array(
                     [i * num_frames // clip_len for i in range(clip_len + 1)])
-                bsize = np.diff(bids)
+                bsize = np.diff(bids) 
+                print("----bsize-----", bsize)
                 bst = bids[:clip_len]
                 offset = np.random.randint(bsize)
                 inds = bst + offset
@@ -1148,6 +1149,7 @@ class UniformSampleFrames(BaseTransform):
         results['clip_len'] = self.clip_len
         results['frame_interval'] = None
         results['num_clips'] = self.num_clips
+        # import IPython; IPython.embed()
         return results
 
     def __repr__(self) -> str:

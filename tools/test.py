@@ -64,6 +64,7 @@ def merge_args(cfg, args):
     """Merge CLI arguments to config."""
     # -------------------- visualization --------------------
     if args.show or (args.show_dir is not None):
+        cfg.default_hooks.visualization=dict(type="VisualizationHook")
         assert 'visualization' in cfg.default_hooks, \
             'VisualizationHook is not set in the `default_hooks` field of ' \
             'config. Please set `visualization=dict(type="VisualizationHook")`'
@@ -73,6 +74,7 @@ def merge_args(cfg, args):
         cfg.default_hooks.visualization.wait_time = args.wait_time
         cfg.default_hooks.visualization.out_dir = args.show_dir
         cfg.default_hooks.visualization.interval = args.interval
+        cfg.default_hooks.visualization=dict(type="VisualizationHook")
 
     # -------------------- Dump predictions --------------------
     if args.dump is not None:
